@@ -1,0 +1,22 @@
+- include_vars: secret.yml
+
+- name: Download Jenkins CI Key
+  shell: wget -q -O - http://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+
+- name: Write Jenkins key to sources
+  shell: echo "deb http://pkg.jenkins.io/debian binary/" > /etc/apt/sources.list.d/jenkins.list
+
+- name: Install JDK
+  apt: name=openjdk-7-jre-headless update_cache=yes state=latest
+
+- name: Install Jenkins
+  apt: name=jenkins update_cache=yes state=latest
+
+- name: Start Jenkins
+  command: /etc/init.d/jenkins start
+
+- name: Create .ssh for Jenkins
+  file: path=/var/lib/jenkins/.ssh state=directory mode=0755
+
+- name: Configure Jenkins server
+  template: src=jenkins dest=/etc/default/ 

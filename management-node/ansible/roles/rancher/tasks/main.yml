@@ -1,0 +1,12 @@
+- name: Run Rancher
+  command: docker run -d --name rancher -v /opt/rancher/mysql/:/var/lib/mysql --restart=always -p 8080:8080 rancher/server
+
+- name: Waiting for Rancher to Initialize
+  command: curl --head --silent http://localhost:8080
+  register: result
+  until: result.stdout.find("200 OK") != -1
+  retries: 5
+  delay: 20
+
+ - name: Run Rancher Agent
+   command: docker pull rancher/agent

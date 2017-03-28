@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - common    
+    - jenkins
+    - docker
+    - rancher-compose
+    - swap
+    - finishing

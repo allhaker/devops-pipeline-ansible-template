@@ -1,0 +1,16 @@
+- include_vars: secret.yml
+
+- name: Create installation directory
+  file: path=/opt/rancher-compose state=directory
+
+- name: Download rancher-compose
+  get_url: url=https://releases.rancher.com/compose/v0.12.2/rancher-compose-linux-amd64-v0.12.2.tar.gz dest=/opt/rancher-compose/
+
+- name: Unzip binary
+  command: tar xvzf /opt/rancher-compose/rancher-compose-linux-amd64-v0.12.2.tar.gz -C /opt/rancher-compose/
+
+- name: Link binary to bin
+  file: src=/opt/rancher-compose/rancher-compose-v0.12.2/rancher-compose dest=/usr/local/bin/rancher-compose state=link
+
+- name: Link binary to xbin
+  file: src=/opt/rancher-compose/rancher-compose-v0.12.2/rancher-compose dest=/usr/local/sbin/rancher-compose state=link
