@@ -19,12 +19,4 @@ swappiness: 10
 # Usually a frequent and costly lookup if not cached
 vfs_cache_pressure: 50
 
-# CSR data for nginx ssl certificate
-
-countryCode: "FI"
-state: "Uusimaa"
-city: "Helsinki"
-company: "Eficode"
-website: "www.eficode.fi"
-
 jenkins_port: 8088

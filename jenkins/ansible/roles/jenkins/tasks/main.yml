@@ -1,16 +1,25 @@
-- name: Get Jenkins Deb Package
-  get_url:
-    url: http://pkg.jenkins-ci.org/debian/binary/jenkins_2.52_all.deb
-    dest: /opt/jenkins_2.52_all.deb
-
 - name: Install daemon
   apt: name=daemon update_cache=yes state=latest
 
-- name: Install JDK
-  apt: name=openjdk-7-jre-headless state=latest
+- name: Add Official Java Repository
+  apt_repository:
+    repo: ppa:webupd8team/java
+    state: present
+
+- name: Accept Java 8 License
+  become: yes
+  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+
+- name: Install Java 8
+  apt: name=oracle-java8-installer update_cache=yes state=latest
+
+- name: Get Jenkins Deb Package
+  get_url:
+    url: http://pkg.jenkins-ci.org/debian/binary/jenkins_2.87_all.deb
+    dest: /opt/jenkins_2.87_all.deb
 
 - name: Install Jenkins
-  apt: deb="/opt/jenkins_2.52_all.deb"
+  apt: deb="/opt/jenkins_2.87_all.deb"
 
 - name: Start Jenkins
   command: /etc/init.d/jenkins start
