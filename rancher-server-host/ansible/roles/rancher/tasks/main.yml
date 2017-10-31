@@ -1,5 +1,5 @@
 - name: Run Rancher
-  command: docker run -d --name rancher -v /opt/rancher/mysql/:/var/lib/mysql --restart=always -p 8080:8080 rancher/server:v1.5.3
+  command: docker run -d --name rancher -v /opt/rancher/mysql/:/var/lib/mysql --restart=always -p 8080:8080 rancher/server:v1.6.10
 
 - name: Waiting for Rancher to Initialize
   command: curl --head --silent http://localhost:8080
@@ -9,4 +9,4 @@
   delay: 20
 
 - name: Pull Rancher Agent
-  command: docker pull rancher/agent:v1.2.1
+  command: docker pull rancher/agent:v1.2.6

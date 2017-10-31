@@ -18,5 +18,3 @@ swappiness: 10
 # How often inode info is removed from cache
 # Usually a frequent and costly lookup if not cached
 vfs_cache_pressure: 50
-
-jenkins_port: 8088

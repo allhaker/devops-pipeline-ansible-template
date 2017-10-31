@@ -6,6 +6,5 @@
     - common    
     - jenkins
     - docker
-    - rancher-compose
     - swap
     - finishing
