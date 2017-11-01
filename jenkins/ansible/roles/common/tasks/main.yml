@@ -1,10 +1,2 @@
-# - name: Install Git
-#   apt: name=git update_cache=yes state=latest
-
 - name: Install apt-transport-https
-  apt: pkg={{ item }} update_cache=yes state=latest
-  with_items:
-     - apt-transport-https
-     - python
-     - python-pip
-     - python-functools32
+  apt: name=apt-transport-https update_cache=yes state=latest

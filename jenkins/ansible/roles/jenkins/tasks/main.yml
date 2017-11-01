@@ -15,17 +15,14 @@
 
 - name: Get Jenkins Deb Package
   get_url:
-    url: http://pkg.jenkins-ci.org/debian/binary/jenkins_2.87_all.deb
-    dest: /opt/jenkins_2.87_all.deb
+    url: http://pkg.jenkins-ci.org/debian/binary/jenkins_2.79_all.deb
+    dest: /opt/jenkins_2.79_all.deb
 
 - name: Install Jenkins
-  apt: deb="/opt/jenkins_2.87_all.deb"
+  apt: deb="/opt/jenkins_2.79_all.deb"
 
 - name: Start Jenkins
   command: /etc/init.d/jenkins start
 
 - name: Create .ssh for Jenkins
   file: path=/var/lib/jenkins/.ssh state=directory mode=0755
-
-- name: Configure Jenkins server
-  template: src=jenkins dest=/etc/default/ 
