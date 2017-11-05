@@ -4,8 +4,8 @@
 - name: Write Docker repo destination
   copy: content="deb https://apt.dockerproject.org/repo ubuntu-trusty main" dest=/etc/apt/sources.list.d/docker.list
 
-- name: Install docker-engine 17.09.* CE
-  apt: name=docker-engine=17.09.*~ce-0~ubuntu-trusty update_cache=yes
+- name: Install docker-engine 17.05.* CE
+  apt: name=docker-engine=17.05.*~ce-0~ubuntu-trusty update_cache=yes
 
 - name: Add group rights
   command: usermod -aG docker vagrant
